@@ -1,6 +1,12 @@
-const URLAPI = 'https://127.0.0.1:8443';
+//const URLAPI = 'https://127.0.0.1:8443';
+const URLAPI = 'https://192.168.1.8:8443';
 const instancia = axios.create({
     baseURL: URLAPI,
+    headers:{
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+    }
 });
 
 async function login(){
@@ -15,7 +21,14 @@ async function login(){
                 "login_id": login_id,
                 "password": password
             }
-        });
+        }/*,{
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+            }
+        }*/
+        );
         console.log(response);
         if(response.status === 200){
             alert("Login exitoso");
