@@ -1,33 +1,36 @@
 //const URLAPI = 'https://127.0.0.1:8443';
-const URLAPI = 'https://192.168.1.8:8443';
+const URLAPI = 'https://192.168.1.8:8443/api';
 const instancia = axios.create({
     baseURL: URLAPI,
-    headers:{
+    /*headers:{
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
         'accept': 'application/json',
-    }
+    }*/
 });
+
+/*const res = instancia.get("/api/migration");
+console.log(res);*/
 
 async function login(){
     const login_id = document.getElementById("login_id").value;
     const password = document.getElementById("password").value;
-    console.log("entra a la función")
+    console.log("entra a la función");
     try{
         console.log(login_id);
         console.log(password);
-        const response = await instancia.post("/api/login", {
+        const response = await instancia.post("/login/", {
             "User":{
                 "login_id": login_id,
                 "password": password
             }
-        }/*,{
-            headers:{
-                'Access-Control-Allow-Origin': '*',
+        },{
+            headers:{            
+                'Access-Control-Allow-Origin': URLAPI,
                 'Content-Type': 'application/json',
                 'accept': 'application/json'
             }
-        }*/
+        } 
         );
         console.log(response);
         if(response.status === 200){
