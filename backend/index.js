@@ -40,7 +40,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/getUserGroup", async (req, res) => {
     try{
-        const result = await instancia.post("/v2/user_groups/search", req.body,{
+        const result = await instancia.post("/v2/user_groups/search", {},{
             headers:{
                 'bs-session-id': req.headers["bs-session-id"]
             }
@@ -67,6 +67,51 @@ app.post("/createUser", async (req, res) => {
         console.log(error.response.data);
     }
 });
+
+app.get("/getUser/:id", async (req, res) => {
+    try{
+        const result = await instancia.get("/users/" + req.params.id, {
+            headers: {
+                'bs-session-id': req.headers["bs-session-id"]
+            }  
+        });
+        res.send(result.data);
+        console.log(result.data);
+    }catch(error){
+        res.status(400).send(error.response.data);
+        console.log(error.response.data);
+    }
+});
+
+app.put("/updateUser/:id", async (req, res) => {
+    try{
+        const result = await instancia.put("/users/" + req.params.id, req.body, {
+            headers: {
+                "bs-session-id": req.headers["bs-session-id"]
+            }
+        });
+        res.send(result.data);
+        console.log(result.data);
+    }catch(error){
+        res.status(400).send(error.response.data);
+        console.log(error.response.data);
+    }
+});
+
+app.delete("/deleteUser/:id/:user_group_id", async(req, res) => {
+    try{
+        const result = await instancia.delete("/users?id="+req.params.id+"&group_id="+req.params.user_group_id, {
+            headers: {
+                "bs-session-id": req.headers["bs-session-id"]
+            }
+        });
+        res.send(result.data);
+        console.log(result.data);
+    }catch(error){
+        res.status(400).send(error.response.data);
+        console.log(error.response.data);
+    }
+})
 
 app.listen(4000, () => {
     console.log("Aplicacion corriendo en el puerto 4000");

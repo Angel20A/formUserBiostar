@@ -31,7 +31,7 @@
                         </div>
                         <div class="col mb-3">
                             <label for="user_id" class="form-label">ID de Usuario</label>
-                            <input type="number" class="form-control" id="user_id">
+                            <input type="number" class="form-control" id="user_id" min="1">
                         </div>
                     </div>
                     <div class="row">
@@ -39,9 +39,9 @@
                             <label for="user_group_id" class="form-label">ID grupo de usuario</label>
                             <select class="form-select" id="user_group_id">
                                 <option selected>Selecciona un grupo</option>
-                                <option value="1">Grupo 1</option>
+                                <!--<option value="1">Grupo 1</option>
                                 <option value="2">Grupo 2</option>
-                                <option value="3">Grupo 3</option>
+                                <option value="3">Grupo 3</option>-->
                             </select>    
                         </div>
                         <div class="col mb-3">
@@ -65,9 +65,9 @@
                     </div>
                     <span id="span-user" class="text-danger font-italic"></span>
                     <div class="row">
-                        <button type="submit" class="col-3 btn btn-success me-md-2">Crear <i class="bi bi-person-plus-fill"></i></button>
-                        <button type="button" class="col-2 btn btn-primary me-md-2">Editar <i class="bi bi-pencil-square"></i></button>
-                        <button type="button" class="col-2 btn btn-danger">Eliminar <i class="bi bi-person-x-fill"></i></button>
+                        <button type="submit" class="col-3 btn btn-success me-md-2" onclick="createUser(); return false;">Crear <i class="bi bi-person-plus-fill"></i></button>
+                        <button type="button" class="col-2 btn btn-primary me-md-2" onclick="updateUser(); return false;">Editar <i class="bi bi-pencil-square"></i></button>
+                        <button type="button" class="col-2 btn btn-danger" onclick="deleteUser(); return false;">Eliminar <i class="bi bi-person-x-fill"></i></button>
                     </div>      
                 </form>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -75,7 +75,7 @@
                         <label for="id" class="form-label">Id a buscar</label>
                         <input type="number" class="form-control" id="id">
                     </div>
-                    <button type="button" class="btn btn-secondary me-md-2">Buscar</button>
+                    <button type="button" onclick="getUser(); return false;" class="btn btn-secondary me-md-2">Buscar</button>
                 </div>
             </div>
         </div>
